@@ -12,7 +12,10 @@ import networkx as nx
 import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
-from similarity_metrics import compute_all_metrics
+if __package__:
+    from .similarity_metrics import compute_all_metrics
+else:
+    from similarity_metrics import compute_all_metrics
 import os
 
 try:
@@ -248,7 +251,10 @@ def prepare_multiple_datasets(datasets, **kwargs):
 
 if __name__ == "__main__":
     # Test de l'extraction
-    from data_loader import load_datasets
+    if __package__:
+        from .data_loader import load_datasets
+    else:
+        from data_loader import load_datasets
     
     datasets = load_datasets()
     
