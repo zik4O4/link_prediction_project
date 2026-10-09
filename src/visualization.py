@@ -141,9 +141,18 @@ def plot_feature_importance(all_results, datasets_names, output_dir='results/fig
 
 if __name__ == "__main__":
     # Pipeline complet : chargement, extraction, entraînement, visualisation
-    from data_loader import load_datasets
-    from feature_extraction import prepare_multiple_datasets
-    from train_models import train_on_multiple_datasets, compare_with_without_our_measure
+    if __package__:
+        from .data_loader import load_datasets
+    else:
+        from data_loader import load_datasets
+    if __package__:
+        from .feature_extraction import prepare_multiple_datasets
+    else:
+        from feature_extraction import prepare_multiple_datasets
+    if __package__:
+        from .train_models import train_on_multiple_datasets, compare_with_without_our_measure
+    else:
+        from train_models import train_on_multiple_datasets, compare_with_without_our_measure
     
     datasets = load_datasets()
     feature_datasets = prepare_multiple_datasets(datasets, max_samples=500)
