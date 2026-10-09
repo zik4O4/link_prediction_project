@@ -315,8 +315,14 @@ def train_on_multiple_datasets(datasets, **kwargs):
 
 if __name__ == "__main__":
     # Test de l'entraînement
-    from data_loader import load_datasets
-    from feature_extraction import prepare_multiple_datasets
+    if __package__:
+        from .data_loader import load_datasets
+    else:
+        from data_loader import load_datasets
+    if __package__:
+        from .feature_extraction import prepare_multiple_datasets
+    else:
+        from feature_extraction import prepare_multiple_datasets
     
     datasets = load_datasets()
     feature_datasets = prepare_multiple_datasets(datasets, max_samples=500)
